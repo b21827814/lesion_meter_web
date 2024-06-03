@@ -68,6 +68,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/filter.svg
   SvgGenImage get filter => const SvgGenImage('assets/icons/filter.svg');
 
+  /// File path: assets/icons/github.svg
+  SvgGenImage get github => const SvgGenImage('assets/icons/github.svg');
+
   /// File path: assets/icons/home.svg
   SvgGenImage get home => const SvgGenImage('assets/icons/home.svg');
 
@@ -97,6 +100,7 @@ class $AssetsIconsGen {
         camera,
         chevronRight,
         filter,
+        github,
         home,
         photo,
         search,

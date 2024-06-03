@@ -4,20 +4,30 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:lesion_meter_web/constants/colors.dart' as colors;
 import 'package:lesion_meter_web/gen/assets.gen.dart';
 import 'package:model_viewer_plus/model_viewer_plus.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 
-class HomePage extends StatelessWidget {
+final _scrollControllerProvider = Provider.autoDispose((ref) {
+  final controller = ScrollController();
+
+  ref.onDispose(controller.dispose);
+
+  return controller;
+});
+
+class HomePage extends ConsumerWidget {
   const HomePage();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: const _AppBar(),
       body: ListView(
-        primary: true,
+        controller: ref.watch(_scrollControllerProvider),
         padding: EdgeInsets.all(48.r),
         children: [
           const _Welcome(),
@@ -41,11 +51,11 @@ class HomePage extends StatelessWidget {
   }
 }
 
-class _AppBar extends StatelessWidget implements PreferredSizeWidget {
+class _AppBar extends ConsumerWidget implements PreferredSizeWidget {
   const _AppBar();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return AppBar(
       toolbarHeight: 150.h,
       leadingWidth: 500.w,
@@ -58,23 +68,10 @@ class _AppBar extends StatelessWidget implements PreferredSizeWidget {
             const Text('Lesion Meter'),
             const Spacer(),
             TextButton(
-              onPressed: () => PrimaryScrollController.of(context)
+              onPressed: () => ref
+                  .watch(_scrollControllerProvider)
                   .animateTo(1200.h, duration: const Duration(seconds: 1), curve: Curves.easeInOut),
               child: const Text('Features'),
-            ),
-            TextButton.icon(
-              onPressed: () {},
-              icon: const Icon(Icons.exit_to_app),
-              style: TextButton.styleFrom(
-                surfaceTintColor: Colors.transparent,
-                textStyle: Theme.of(context)
-                    .textButtonTheme
-                    .style
-                    ?.textStyle
-                    ?.resolve(MaterialState.values.toSet())
-                    ?.copyWith(decoration: TextDecoration.underline),
-              ),
-              label: const Text("GitHub"),
             ),
           ],
         ),
@@ -86,11 +83,11 @@ class _AppBar extends StatelessWidget implements PreferredSizeWidget {
   Size get preferredSize => Size.fromHeight(150.h);
 }
 
-class _Welcome extends StatelessWidget {
+class _Welcome extends ConsumerWidget {
   const _Welcome();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final textTheme = Theme.of(context).textTheme;
 
     return Container(
@@ -130,14 +127,18 @@ class _Welcome extends StatelessWidget {
                 children: [
                   Expanded(
                     child: FilledButton(
-                      onPressed: () {},
+                      onPressed: () => launchUrl(
+                        Uri.parse("https://drive.google.com/file/d/1CwkJAai1ORFo9La6mPGvQNvgN-KVKVQR/view"),
+                      ),
                       child: const Text("Download"),
                     ),
                   ),
                   SizedBox(width: 24.w),
                   Expanded(
                     child: OutlinedButton(
-                      onPressed: () {},
+                      onPressed: () => ref
+                          .watch(_scrollControllerProvider)
+                          .animateTo(5200.h, duration: const Duration(seconds: 1), curve: Curves.easeInOut),
                       child: const Text("Learn More"),
                     ),
                   ),
@@ -301,7 +302,7 @@ class _Showcase3 extends StatelessWidget {
                 Text(
                   "Lesion Meter goes beyond traditional 2D analysis by incorporating a "
                   "state-of-the-art 3D viewer. This feature allows you to examine skin "
-                  "lesions in intricate detail, rotating and zooming in on the 3D model "
+                  "lesions in intricate detail, rotating in on the 3D model "
                   "to better understand the lesion's structure and depth. With this "
                   "comprehensive view, you can make more accurate assessments and track "
                   "changes with greater precision, ensuring the best possible care for your patients.",
@@ -311,12 +312,12 @@ class _Showcase3 extends StatelessWidget {
             ),
           ),
           SizedBox(width: 48.w),
-          Expanded(
+          const Expanded(
             child: Stack(
               alignment: Alignment.topCenter,
               children: [
                 ModelViewer(
-                  src: Assets.anims.azyara,
+                  src: "assets/assets/anims/azyara.glb",
                   ar: true,
                   autoRotate: true,
                   disableZoom: true,
@@ -503,32 +504,83 @@ class _ContactUs extends StatelessWidget {
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
 
-    return Column(
+    return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          "Contact Us",
-          style: textTheme.displayMedium,
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              "Contact Us",
+              style: textTheme.displayMedium,
+            ),
+            SizedBox(height: 32.h),
+            Text(
+              "Have any questions or need assistance? Reach out to us!",
+              style: textTheme.bodyMedium,
+            ),
+            SizedBox(height: 100.h),
+            Icon(Icons.email_outlined, size: 60.r),
+            SizedBox(height: 16.h),
+            Text("Email", style: textTheme.labelMedium?.copyWith(fontWeight: FontWeight.w600)),
+            SizedBox(height: 8.h),
+            MouseRegion(
+              cursor: SystemMouseCursors.click,
+              child: GestureDetector(
+                onTap: () {
+                  final Uri emailLaunchUri = Uri(
+                    scheme: 'mailto',
+                    path: "b21827814@cs.hacettepe.edu.tr",
+                  );
+
+                  launchUrl(emailLaunchUri);
+                },
+                child: Text(
+                  "b21827814@cs.hacettepe.edu.tr",
+                  style: textTheme.labelSmall?.copyWith(decoration: TextDecoration.underline, color: colors.green),
+                ),
+              ),
+            ),
+            SizedBox(height: 16.h),
+            MouseRegion(
+              cursor: SystemMouseCursors.click,
+              child: GestureDetector(
+                onTap: () {
+                  final Uri emailLaunchUri = Uri(
+                    scheme: 'mailto',
+                    path: "b2200356002@cs.hacettepe.edu.tr",
+                  );
+
+                  launchUrl(emailLaunchUri);
+                },
+                child: Text(
+                  "b2200356002@cs.hacettepe.edu.tr",
+                  style: textTheme.labelSmall?.copyWith(decoration: TextDecoration.underline, color: colors.green),
+                ),
+              ),
+            ),
+          ],
         ),
-        SizedBox(height: 32.h),
-        Text(
-          "Have any questions or need assistance? Reach out to us!",
-          style: textTheme.bodyMedium,
+        const Spacer(flex: 2),
+        Column(
+          children: [
+            Assets.icons.github.svg(),
+            SizedBox(height: 24.h),
+            TextButton(
+              onPressed: () => launchUrl(Uri.parse("https://github.com/b2200356002/LesionMeter")),
+              style: TextButton.styleFrom(
+                textStyle: Theme.of(context)
+                    .textButtonTheme
+                    .style
+                    ?.textStyle
+                    ?.resolve(MaterialState.values.toSet())
+                    ?.copyWith(decoration: TextDecoration.underline),
+              ),
+              child: const Text("Contribute on GitHub"),
+            ),
+          ],
         ),
-        SizedBox(height: 100.h),
-        Icon(Icons.email_outlined, size: 60.r),
-        SizedBox(height: 16.h),
-        Text("Email", style: textTheme.labelMedium?.copyWith(fontWeight: FontWeight.w600)),
-        SizedBox(height: 8.h),
-        Text(
-          "b21827814@cs.hacettepe.edu.tr",
-          style: textTheme.labelSmall?.copyWith(decoration: TextDecoration.underline, color: colors.green),
-        ),
-        SizedBox(height: 16.h),
-        Text(
-          "b2200356002@cs.hacettepe.edu.tr",
-          style: textTheme.labelSmall?.copyWith(decoration: TextDecoration.underline, color: colors.green),
-        ),
+        const Spacer(),
       ],
     );
   }

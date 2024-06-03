@@ -199,6 +199,7 @@ final _textButtonTheme = TextButtonThemeData(
     textStyle: MaterialStatePropertyAll(lightLabelMedium),
     shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(6.r))),
     minimumSize: MaterialStatePropertyAll(Size(100.w, 100.h)),
+    overlayColor: MaterialStateProperty.all(Colors.transparent),
     padding: MaterialStateProperty.all(EdgeInsets.symmetric(horizontal: 24.w, vertical: 12.h)),
   ),
 );
