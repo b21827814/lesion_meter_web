@@ -114,6 +114,15 @@ class $AssetsIconsGen {
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
+  /// File path: assets/images/berke.jpeg
+  AssetGenImage get berke => const AssetGenImage('assets/images/berke.jpeg');
+
+  /// File path: assets/images/fuat.jpeg
+  AssetGenImage get fuat => const AssetGenImage('assets/images/fuat.jpeg');
+
+  /// File path: assets/images/orhan.jpeg
+  AssetGenImage get orhan => const AssetGenImage('assets/images/orhan.jpeg');
+
   /// File path: assets/images/poster.png
   AssetGenImage get poster => const AssetGenImage('assets/images/poster.png');
 
@@ -146,6 +155,9 @@ class $AssetsImagesGen {
 
   /// List of all assets
   List<AssetGenImage> get values => [
+        berke,
+        fuat,
+        orhan,
         poster,
         showcase1,
         showcase2,

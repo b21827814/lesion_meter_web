@@ -44,6 +44,8 @@ class HomePage extends ConsumerWidget {
           SizedBox(height: 300.h),
           const _Poster(),
           SizedBox(height: 300.h),
+          const _Team(),
+          SizedBox(height: 300.h),
           const _ContactUs(),
         ],
       ),
@@ -128,7 +130,9 @@ class _Welcome extends ConsumerWidget {
                   Expanded(
                     child: FilledButton(
                       onPressed: () => launchUrl(
-                        Uri.parse("https://drive.google.com/file/d/1CwkJAai1ORFo9La6mPGvQNvgN-KVKVQR/view"),
+                        Uri.parse(
+                          "https://drive.google.com/drive/folders/1n_T_j0V_Oa8eNgitkUzBDPd8hWxUcnaq?usp=sharing",
+                        ),
                       ),
                       child: const Text("Download"),
                     ),
@@ -398,7 +402,7 @@ class _YoutubeVideoState extends State<_YoutubeVideo> {
     super.initState();
 
     controller = YoutubePlayerController.fromVideoId(
-      videoId: '<video-id>',
+      videoId: "ws6whO0pwIw",
       params: const YoutubePlayerParams(showFullscreenButton: true),
     );
   }
@@ -581,6 +585,59 @@ class _ContactUs extends StatelessWidget {
           ],
         ),
         const Spacer(),
+      ],
+    );
+  }
+}
+
+class _Team extends StatelessWidget {
+  const _Team();
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Text("Meet the Team", style: Theme.of(context).textTheme.displayMedium),
+        SizedBox(height: 260.h),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            _TeamMember(name: "Berke Sütcü", role: "Frontend Developer", imagePath: Assets.images.berke.path),
+            Transform.translate(
+              offset: Offset(0, -100.h),
+              child: _TeamMember(name: "Fuat Akal", role: "Supervisor", imagePath: Assets.images.fuat.path),
+            ),
+            _TeamMember(name: "Orhan Aytekin", role: "Backend Developer", imagePath: Assets.images.orhan.path),
+          ],
+        ),
+      ],
+    );
+  }
+}
+
+class _TeamMember extends StatelessWidget {
+  final String name;
+  final String role;
+  final String imagePath;
+
+  const _TeamMember({
+    required this.name,
+    required this.role,
+    required this.imagePath,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        CircleAvatar(
+          radius: 150.r,
+          foregroundImage: AssetImage(imagePath),
+        ),
+        SizedBox(height: 24.h),
+        Text(name, style: Theme.of(context).textTheme.labelLarge),
+        SizedBox(height: 8.h),
+        Text(role, style: Theme.of(context).textTheme.bodyMedium),
       ],
     );
   }

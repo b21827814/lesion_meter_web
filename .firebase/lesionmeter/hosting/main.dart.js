@@ -73763,7 +73763,7 @@ k=$.aE().gbU()
 j=t.F
 return A.Zh(i,new A.jm(new A.bi(r,r,r,r),A.lK(A.a([q,p,o,n,m,l,A.bA(A.jv(A.a([A.fV(A.arR(B.wW,new A.aje(),i),1),A.bA(i,i,24*$.aE().gbU()),A.fV(new A.Jq(new A.ajf(b),i,i,i,i,B.O,i,!1,i,!0,B.Sc,i),1)],j),B.aK,B.aE),i,500*k)],j),B.aJ,B.bQ),i),i,i,new A.i6(s,new A.qB(new A.q4("assets/images/welcome.png",i,i),B.yF),i,f,i,i,B.bE),1000*g,i,i,i)}}
 A.aje.prototype={
-$0(){return A.v0(A.dC("https://drive.google.com/file/d/1CwkJAai1ORFo9La6mPGvQNvgN-KVKVQR/view",0,null))},
+$0(){return A.v0(A.dC("https://drive.google.com/drive/folders/1n_T_j0V_Oa8eNgitkUzBDPd8hWxUcnaq?usp=sharing",0,null))},
 $S:0}
 A.ajf.prototype={
 $0(){return this.a.Fu($.am2(),t._O).hR(5200*$.aE().gaU(),B.e3,B.c9)},
@@ -73823,7 +73823,7 @@ ai(){return new A.Vi(B.l)}}
 A.Vi.prototype={
 aL(){this.b3()
 var s=A.aIG(B.TB)
-s.nx("cueVideoById",A.aP(["videoId","<video-id>","startSeconds",null,"endSeconds",null],t.N,t.z))
+s.nx("cueVideoById",A.aP(["videoId","DMQr34Qe_eg","startSeconds",null,"endSeconds",null],t.N,t.z))
 this.d!==$&&A.bv()
 this.d=s},
 P(a){var s=null,r=A.ai(a).p3,q=t.F,p=A.fV(A.lK(A.a([A.dB("Watch Our Introduction Video",r.b),A.bA(s,32*$.aE().gaU(),s),A.dB("Discover the revolutionary features of Lesion Meter by watching our introduction video. See how our cutting-edge mobile application can transform skin health assessment with accurate, efficient, and easy-to-use lesion measurement tools. Learn about our advanced algorithms, intuitive interface, and comprehensive tracking capabilities. Whether you're a healthcare professional looking for precise lesion analysis or a patient wanting to monitor skin conditions, Lesion Meter is here to provide the best solution. Watch now to see Lesion Meter in action and understand how it can benefit you.",r.z)],q),B.aJ,B.bQ),1),o=A.bA(s,s,100*$.aE().gbU()),n=this.d
