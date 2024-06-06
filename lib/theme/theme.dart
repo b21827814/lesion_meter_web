@@ -32,7 +32,7 @@ final theme = ThemeData(
 final _inputDecorationTheme = InputDecorationTheme(
   filled: true,
   fillColor: colors.white,
-  contentPadding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 16.h),
+  contentPadding: EdgeInsets.symmetric(horizontal: 14.r, vertical: 16.r),
   border: OutlineInputBorder(
     borderRadius: BorderRadius.circular(8),
     borderSide: BorderSide(
@@ -128,7 +128,7 @@ final _outlinedButtonTheme = OutlinedButtonThemeData(
         side: BorderSide(color: colors.green, width: 1.r),
       ),
     ),
-    minimumSize: MaterialStatePropertyAll(Size.fromHeight(100.h)),
+    minimumSize: MaterialStatePropertyAll(Size.fromHeight(100.r)),
   ),
 );
 
@@ -181,7 +181,7 @@ final _filledButtonTheme = FilledButtonThemeData(
     tapTargetSize: MaterialTapTargetSize.shrinkWrap,
     textStyle: MaterialStatePropertyAll(lightLabelMedium),
     shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(6.r))),
-    minimumSize: MaterialStatePropertyAll(Size.fromHeight(100.h)),
+    minimumSize: MaterialStatePropertyAll(Size.fromHeight(100.r)),
   ),
 );
 
@@ -198,15 +198,15 @@ final _textButtonTheme = TextButtonThemeData(
     tapTargetSize: MaterialTapTargetSize.shrinkWrap,
     textStyle: MaterialStatePropertyAll(lightLabelMedium),
     shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(6.r))),
-    minimumSize: MaterialStatePropertyAll(Size(100.w, 100.h)),
+    minimumSize: MaterialStatePropertyAll(Size(100.r, 100.r)),
     overlayColor: MaterialStateProperty.all(Colors.transparent),
-    padding: MaterialStateProperty.all(EdgeInsets.symmetric(horizontal: 24.w, vertical: 12.h)),
+    padding: MaterialStateProperty.all(EdgeInsets.symmetric(horizontal: 24.r, vertical: 12.r)),
   ),
 );
 
 final _listTileTheme = ListTileThemeData(
   tileColor: colors.white,
-  contentPadding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
+  contentPadding: EdgeInsets.symmetric(horizontal: 16.r, vertical: 12.r),
   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.r)),
   titleTextStyle: lightLabelSmall,
   iconColor: colors.green,
